@@ -136,7 +136,7 @@
 //#define BLUETOOTH
 
 // Name displayed in the LCD "Ready" message and Info menu
-#define CUSTOM_MACHINE_NAME "3D Print V0.1"
+#define CUSTOM_MACHINE_NAME "3D Print V5.0"
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like https://www.uuidgenerator.net/version4
@@ -164,7 +164,7 @@
 #define Z_DRIVER_TYPE TMC2209
 //#define X2_DRIVER_TYPE A4988
 //#define Y2_DRIVER_TYPE A4988
-//#define Z2_DRIVER_TYPE A4988
+//#define Z2_DRIVER_TYPE TMC2209
 //#define Z3_DRIVER_TYPE A4988
 //#define Z4_DRIVER_TYPE A4988
 //#define I_DRIVER_TYPE  A4988
@@ -174,7 +174,7 @@
 //#define V_DRIVER_TYPE  A4988
 //#define W_DRIVER_TYPE  A4988
 #define E0_DRIVER_TYPE TMC2209
-//#define E1_DRIVER_TYPE A4988
+//#define E1_DRIVER_TYPE TMC2209
 //#define E2_DRIVER_TYPE A4988
 //#define E3_DRIVER_TYPE A4988
 //#define E4_DRIVER_TYPE A4988
@@ -1197,7 +1197,7 @@
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
 // швидкість руху, міняти якщо заданий 1см не відповідає пройденому
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 400, 437 } // was . . 800, 186
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 183 } 
 
 /**
  * Default Max Feed Rate (linear=mm/s, rotational=°/s)
@@ -1206,7 +1206,7 @@
  */
 // швидкість руху по осях
 // try next   { 100, 100, 5, 25 } { 200, 200, 10, 35 }
-#define DEFAULT_MAX_FEEDRATE       { 100, 100, 5, 50 }  //was   { 300, 300, 5, 25 }
+#define DEFAULT_MAX_FEEDRATE       { 200, 200, 5, 50 } 
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -1253,9 +1253,9 @@
 #define CLASSIC_JERK
 #if ENABLED(CLASSIC_JERK)
 //максимальний допустимий ривок для горизонтальних рухів по осям X та Y 
-  #define DEFAULT_XJERK 5.0 //13.0
-  #define DEFAULT_YJERK 5.0 //13.0
-  #define DEFAULT_ZJERK  0.1 //0.3
+  #define DEFAULT_XJERK 4.0 //13.0
+  #define DEFAULT_YJERK 4.0 //13.0
+  #define DEFAULT_ZJERK  0.2 //0.3
   //#define DEFAULT_IJERK  0.3
   //#define DEFAULT_JJERK  0.3
   //#define DEFAULT_KJERK  0.3
@@ -1271,7 +1271,7 @@
   #endif
 #endif
 
-#define DEFAULT_EJERK   2.0 // 5.0  // May be used by Linear Advance
+#define DEFAULT_EJERK   3.0 // 5.0  // May be used by Linear Advance
 
 /**
  * Junction Deviation Factor
@@ -1737,9 +1737,9 @@
 #define X_MIN_POS 0
 #define Y_MIN_POS -50
 #define Z_MIN_POS 0
-#define X_MAX_POS 350
-#define Y_MAX_POS 350
-#define Z_MAX_POS 350
+#define X_MAX_POS 330
+#define Y_MAX_POS 330
+#define Z_MAX_POS 330
 //#define I_MIN_POS 0
 //#define I_MAX_POS 50
 //#define J_MIN_POS 0
@@ -1807,7 +1807,7 @@
  * RAMPS-based boards use SERVO3_PIN for the first runout sensor.
  * For other boards you may need to define FIL_RUNOUT_PIN, FIL_RUNOUT2_PIN, etc.
  */
-//#define FILAMENT_RUNOUT_SENSOR
+#define FILAMENT_RUNOUT_SENSOR
 #if ENABLED(FILAMENT_RUNOUT_SENSOR)
   #define FIL_RUNOUT_ENABLED_DEFAULT true // Enable the sensor on startup. Override with M412 followed by M500.
   #define NUM_RUNOUT_SENSORS   1          // Number of sensors, up to one per extruder. Define a FIL_RUNOUT#_PIN for each.
@@ -2251,14 +2251,14 @@
 // Preheat Constants - Up to 10 are supported without changes
 //
 #define PREHEAT_1_LABEL       "PLA"
-#define PREHEAT_1_TEMP_HOTEND 190
-#define PREHEAT_1_TEMP_BED     70
+#define PREHEAT_1_TEMP_HOTEND 215
+#define PREHEAT_1_TEMP_BED     60
 #define PREHEAT_1_TEMP_CHAMBER 35
 #define PREHEAT_1_FAN_SPEED     0 // Value from 0 to 255
 
 #define PREHEAT_2_LABEL       "ABS"
 #define PREHEAT_2_TEMP_HOTEND 240
-#define PREHEAT_2_TEMP_BED    110
+#define PREHEAT_2_TEMP_BED    100
 #define PREHEAT_2_TEMP_CHAMBER 35
 #define PREHEAT_2_FAN_SPEED     0 // Value from 0 to 255
 
@@ -2281,11 +2281,11 @@
  *    P1  Raise the nozzle always to Z-park height.
  *    P2  Raise the nozzle by Z-park amount, limited to Z_MAX_POS.
  */
-//#define NOZZLE_PARK_FEATURE
+#define NOZZLE_PARK_FEATURE
 
 #if ENABLED(NOZZLE_PARK_FEATURE)
   // Specify a park position as { X, Y, Z_raise }
-  #define NOZZLE_PARK_POINT { (X_MIN_POS + 10), (Y_MAX_POS - 10), 20 }
+  #define NOZZLE_PARK_POINT { 35, -25,  20 }
   #define NOZZLE_PARK_MOVE          0   // Park motion: 0 = XY Move, 1 = X Only, 2 = Y Only, 3 = X before Y, 4 = Y before X
   #define NOZZLE_PARK_Z_RAISE_MIN   2   // (mm) Always raise Z by at least this distance
   #define NOZZLE_PARK_XY_FEEDRATE 100   // (mm/s) X and Y axes feedrate (also used for delta Z axis)
@@ -3231,8 +3231,8 @@
 
   //#define TOUCH_CALIBRATION_X 12316
   //#define TOUCH_CALIBRATION_Y -8981
-  //#define TOUCH_OFFSET_X        -43
-  //#define TOUCH_OFFSET_Y        257
+  #define TOUCH_OFFSET_X        -50
+  #define TOUCH_OFFSET_Y        -50
   //#define TOUCH_ORIENTATION TOUCH_LANDSCAPE
 
   #if BOTH(TOUCH_SCREEN_CALIBRATION, EEPROM_SETTINGS)

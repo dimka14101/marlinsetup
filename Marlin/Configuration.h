@@ -1197,7 +1197,7 @@
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
 // швидкість руху, міняти якщо заданий 1см не відповідає пройденому
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 183 } 
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 788 } 
 
 /**
  * Default Max Feed Rate (linear=mm/s, rotational=°/s)

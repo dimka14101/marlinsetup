@@ -165,6 +165,9 @@
   #define POWER_LOSS_PIN                    PA13  // PW_DET
 #endif
 
+#define PS_ON_PIN                       PB2
+
+
 //#define SUICIDE_PIN                       PB2
 //#define LED_PIN                           PB2
 //#define KILL_PIN                          PA2
